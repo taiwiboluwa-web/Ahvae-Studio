@@ -1,54 +1,38 @@
 "use client";
 
-import { useEffect, type PropsWithChildren } from "react";
-import Lenis from "lenis";
+import { useEffect, useState, type PropsWithChildren } from "react";
+import { ReactLenis } from "lenis/react";
+
+const lenisOptions = {
+  lerp: 0.085,
+  smoothWheel: true,
+  wheelMultiplier: 0.92,
+  touchMultiplier: 1.08,
+  anchors: true,
+};
 
 export default function SmoothScroll({ children }: PropsWithChildren) {
+  const [reducedMotion, setReducedMotion] = useState<boolean | null>(null);
+
   useEffect(() => {
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updatePreference = () => setReducedMotion(preference.matches);
 
-    if (reducedMotion.matches) {
-      return;
-    }
-
-    const lenis = new Lenis({
-      autoRaf: false,
-      duration: 1.1,
-      smoothWheel: true,
-      wheelMultiplier: 0.92,
-      touchMultiplier: 1.08,
-      anchors: true,
-    });
-
-    let frameId = 0;
-    let destroyed = false;
-
-    const stop = () => {
-      if (destroyed) return;
-      destroyed = true;
-      window.cancelAnimationFrame(frameId);
-      lenis.destroy();
-    };
-
-    const raf = (time: number) => {
-      if (destroyed) return;
-      lenis.raf(time);
-      frameId = window.requestAnimationFrame(raf);
-    };
-
-    frameId = window.requestAnimationFrame(raf);
-
-    const onPreferenceChange = (event: MediaQueryListEvent) => {
-      if (event.matches) stop();
-    };
-
-    reducedMotion.addEventListener("change", onPreferenceChange);
+    updatePreference();
+    preference.addEventListener("change", updatePreference);
 
     return () => {
-      reducedMotion.removeEventListener("change", onPreferenceChange);
-      stop();
+      preference.removeEventListener("change", updatePreference);
     };
   }, []);
 
-  return <>{children}</>;
+  if (reducedMotion !== false) {
+    return <>{children}</>;
+  }
+
+  return (
+    <ReactLenis root options={lenisOptions}>
+      {children}
+    </ReactLenis>
+  );
 }
