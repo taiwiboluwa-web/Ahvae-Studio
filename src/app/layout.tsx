@@ -1,19 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, DM_Sans } from "next/font/google";
-import "lenis/dist/lenis.css";
+import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
-import SmoothScroll from "@/components/smooth-scroll";
+import SmoothScroll from "@/components/SmoothScroll";
 
-const dmSans = DM_Sans({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-dm-sans",
+  variable: "--font-inter",
   display: "swap",
 });
 
-const cormorant = Cormorant_Garamond({
+const playfair = Playfair_Display({
   subsets: ["latin"],
-  variable: "--font-cormorant",
-  weight: ["400", "500", "600", "700"],
+  variable: "--font-playfair",
   display: "swap",
 });
 
@@ -23,9 +21,17 @@ export const metadata: Metadata = {
     template: "%s | AHVAÉ Studios",
   },
   description:
-    "AHVAÉ Studios creates considered visual stories for brands, businesses and events through film, photography and creative direction. Based in Ontario, Canada.",
+    "Visual storytelling for brands, businesses and events. AHVAÉ Studios brings film, photography and creative direction together to create work with feeling. Based in Ontario, Canada.",
   applicationName: "AHVAÉ Studios",
   creator: "AHVAÉ Studios",
+  keywords: [
+    "AHVAÉ Studios",
+    "Ontario filmmaker",
+    "photography studio",
+    "creative direction",
+    "brand storytelling",
+    "event films",
+  ],
   openGraph: {
     type: "website",
     siteName: "AHVAÉ Studios",
@@ -36,8 +42,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "AHVAÉ Studios — Visual Storytelling",
-    description:
-      "Visual storytelling for brands, businesses and events.",
+    description: "Visual storytelling for brands, businesses and events.",
   },
   robots: {
     index: true,
@@ -58,7 +63,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${dmSans.variable} ${cormorant.variable}`}>
+    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
       <body>
         <SmoothScroll>{children}</SmoothScroll>
       </body>
