@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 
 const portfolioImages = [
@@ -20,34 +20,39 @@ type PreloaderProps = {
 
 export default function Preloader({ onComplete }: PreloaderProps) {
   const [progress, setProgress] = useState(0);
+  const intervalRef = useRef<number | undefined>(undefined);
 
+  /* Count 0 -> 100. The updater stays pure so React StrictMode cannot
+     double-fire any side effects. */
   useEffect(() => {
-    let completionTimer: number | undefined;
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    intervalRef.current = window.setInterval(
+      () => setProgress((current) => Math.min(current + 1, 100)),
+      reducedMotion ? 8 : 24,
+    );
+
+    return () => window.clearInterval(intervalRef.current);
+  }, []);
+
+  /* Once the counter reaches 100, stop ticking and hand off to the page. */
+  useEffect(() => {
+    if (progress < 100) return;
+
+    window.clearInterval(intervalRef.current);
 
     const reducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
-    const intervalDuration = reducedMotion ? 8 : 24;
+    const completionTimer = window.setTimeout(
+      onComplete,
+      reducedMotion ? 100 : 700,
+    );
 
-    const progressTimer = window.setInterval(() => {
-      setProgress((current) => {
-        if (current >= 100) {
-          window.clearInterval(progressTimer);
-          completionTimer = window.setTimeout(onComplete, reducedMotion ? 100 : 700);
-          return 100;
-        }
-
-        return Math.min(current + 1, 100);
-      });
-    }, intervalDuration);
-
-    return () => {
-      window.clearInterval(progressTimer);
-      if (completionTimer !== undefined) {
-        window.clearTimeout(completionTimer);
-      }
-    };
-  }, [onComplete]);
+    return () => window.clearTimeout(completionTimer);
+  }, [progress, onComplete]);
 
   return (
     <motion.div

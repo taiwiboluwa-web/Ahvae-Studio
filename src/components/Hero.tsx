@@ -20,7 +20,12 @@ const itemVariants: Variants = {
   },
 };
 
-export default function Hero() {
+type HeroProps = {
+  /** Set to true once the preloader has finished to start the entrance. */
+  ready?: boolean;
+};
+
+export default function Hero({ ready = true }: HeroProps) {
   return (
     <section
       id="home"
@@ -66,7 +71,7 @@ export default function Hero() {
         className="relative z-10 mx-auto flex w-full max-w-[1100px] flex-col items-center px-5 text-center sm:px-8"
         variants={containerVariants}
         initial="hidden"
-        animate="show"
+        animate={ready ? "show" : "hidden"}
       >
         <motion.div variants={itemVariants} className="mb-7 flex items-center gap-3">
           <span className="h-px w-8 bg-[#d4af37]/80" />

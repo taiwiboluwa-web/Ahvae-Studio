@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import {
   motion,
+  useMotionValueEvent,
   useScroll,
   useSpring,
   useTransform,
@@ -46,10 +47,19 @@ export default function Scrollytelling() {
   const viewportRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const [travelDistance, setTravelDistance] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end end"],
+  });
+
+  useMotionValueEvent(scrollYProgress, "change", (value) => {
+    const next = Math.min(
+      disciplines.length - 1,
+      Math.max(0, Math.floor(value * disciplines.length)),
+    );
+    setActiveIndex((current) => (current === next ? current : next));
   });
 
   const horizontalX = useTransform(
@@ -170,7 +180,8 @@ export default function Scrollytelling() {
             />
           </div>
           <span className="text-[8px] uppercase tracking-[0.24em] text-black/40">
-            01 — 03
+            {String(activeIndex + 1).padStart(2, "0")} —{" "}
+            {String(disciplines.length).padStart(2, "0")}
           </span>
         </div>
       </div>

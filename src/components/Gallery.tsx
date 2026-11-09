@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { motion } from "motion/react";
 
+const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
 const projects = [
   {
     id: "form",
@@ -10,6 +12,7 @@ const projects = [
     title: "The Human Form",
     category: "Portraiture",
     year: "Visual study",
+    blurb: "Portraits shaped by soft light, restraint and presence.",
     image:
       "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1500&q=90",
     alt: "Editorial portrait in soft directional light",
@@ -20,6 +23,7 @@ const projects = [
     title: "The Art of Arrival",
     category: "Events",
     year: "Visual study",
+    blurb: "The first moments of an evening, held in warm, quiet light.",
     image:
       "https://images.unsplash.com/photo-1519741497674-611481863552?w=1500&q=90",
     alt: "Elegant event setting with warm evening light",
@@ -30,6 +34,7 @@ const projects = [
     title: "A Study in Stillness",
     category: "Photography",
     year: "Visual study",
+    blurb: "Minimal compositions where space does the storytelling.",
     image:
       "https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?w=1500&q=90",
     alt: "Minimal still life arrangement in a quiet interior",
@@ -40,6 +45,7 @@ const projects = [
     title: "The Moving Image",
     category: "Film",
     year: "Visual study",
+    blurb: "Cinematic frames built on rhythm, atmosphere and feeling.",
     image:
       "https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?w=1500&q=90",
     alt: "Camera operator working on a film production",
@@ -66,8 +72,10 @@ export default function Gallery() {
         </p>
       </div>
 
+      {/* The row always fills its width. Hovering grows one card's flex-grow
+          and dims the rest, so nothing wraps or shifts the page layout. */}
       <div
-        className="grid grid-cols-12 gap-3 sm:gap-4 lg:gap-5"
+        className="flex flex-col gap-3 sm:gap-4 md:flex-row lg:gap-5"
         onMouseLeave={() => setActiveProject(null)}
       >
         {projects.map((project) => {
@@ -78,21 +86,28 @@ export default function Gallery() {
             <motion.button
               key={project.id}
               type="button"
-              layout
               onMouseEnter={() => setActiveProject(project.id)}
               onFocus={() => setActiveProject(project.id)}
-              onBlur={() => setActiveProject(null)}
+              onBlur={() =>
+                setActiveProject((current) =>
+                  current === project.id ? null : current,
+                )
+              }
               onClick={() =>
                 setActiveProject((current) =>
                   current === project.id ? null : project.id,
                 )
               }
-              animate={{ opacity: isDimmed ? 0.48 : 1 }}
+              initial={false}
+              animate={{
+                flexGrow: isActive ? 2.8 : 1,
+                opacity: isDimmed ? 0.42 : 1,
+              }}
               transition={{
-                layout: { duration: 0.72, ease: [0.22, 1, 0.36, 1] },
+                flexGrow: { duration: 0.8, ease: EASE },
                 opacity: { duration: 0.45 },
               }}
-              className={`project-card group relative col-span-12 h-[390px] overflow-hidden bg-[#d8d5ce] text-left sm:h-[460px] lg:h-[540px] ${isActive ? "md:col-span-6" : "md:col-span-2"} `}
+              className="project-card group relative h-[390px] min-w-0 basis-auto overflow-hidden bg-[#d8d5ce] text-left sm:h-[460px] md:basis-0 lg:h-[540px]"
               aria-label={`View ${project.title}, ${project.category}`}
             >
               <div
@@ -101,24 +116,41 @@ export default function Gallery() {
                 className="project-image absolute inset-0 bg-cover bg-center"
                 style={{ backgroundImage: `url("${project.image}")` }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/5 to-black/10 transition-opacity duration-700 group-hover:from-black/80" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/5 to-black/10" />
+
               <div className="absolute left-5 right-5 top-5 flex items-center justify-between text-[8px] uppercase tracking-[0.22em] text-white/75 sm:left-7 sm:right-7 sm:top-7">
                 <span>{project.index} / 04</span>
                 <span className="text-[#e2c773]">{project.category}</span>
               </div>
-              <div className="absolute bottom-6 left-5 right-5 flex items-end justify-between gap-3 text-white sm:bottom-8 sm:left-7 sm:right-7">
-                <div>
-                  <p className="mb-2 text-[8px] uppercase tracking-[0.2em] text-white/55">
-                    {project.year}
-                  </p>
-                  <h3 className="font-editorial text-[clamp(1.7rem,3vw,3.1rem)] leading-[0.98] tracking-[-0.035em]">
-                    {project.title}
-                  </h3>
-                </div>
-                <span className="mb-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/45 text-sm transition-all duration-500 group-hover:border-[#d4af37] group-hover:bg-[#d4af37] group-hover:text-[#0a0a0a]">
-                  ↗
-                </span>
+
+              {/* Fixed-width text block so copy never reflows mid-expansion */}
+              <div className="absolute bottom-6 left-5 w-[calc(100%-2.5rem)] text-white sm:bottom-8 sm:left-7 sm:w-[calc(100%-3.5rem)] md:w-[clamp(220px,22vw,380px)]">
+                <p className="mb-2 text-[8px] uppercase tracking-[0.2em] text-white/55">
+                  {project.year}
+                </p>
+                <h3 className="font-editorial text-[clamp(1.7rem,3vw,3.1rem)] leading-[0.98] tracking-[-0.035em]">
+                  {project.title}
+                </h3>
+                <motion.p
+                  initial={false}
+                  animate={{
+                    opacity: isActive ? 1 : 0,
+                    y: isActive ? 0 : 14,
+                  }}
+                  transition={{
+                    duration: 0.6,
+                    ease: EASE,
+                    delay: isActive ? 0.15 : 0,
+                  }}
+                  className="mt-3 hidden max-w-[300px] text-[11px] leading-6 text-white/70 md:block"
+                >
+                  {project.blurb}
+                </motion.p>
               </div>
+
+              <span className="absolute bottom-6 right-5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/45 text-sm text-white transition-all duration-500 group-hover:border-[#d4af37] group-hover:bg-[#d4af37] group-hover:text-[#0a0a0a] sm:bottom-8 sm:right-7">
+                ↗
+              </span>
             </motion.button>
           );
         })}
