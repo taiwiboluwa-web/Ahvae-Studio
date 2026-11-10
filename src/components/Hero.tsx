@@ -130,7 +130,7 @@ export default function Hero({ ready = true }: HeroProps) {
         <motion.div variants={itemVariants} className="mb-7 flex items-center gap-3">
           <span className="h-px w-8 bg-[#d4af37]/80" />
           <p className="gold-kicker text-[9px] font-medium sm:text-[10px]">
-            A visual production studio
+            Independent visual production
           </p>
           <span className="h-px w-8 bg-[#d4af37]/80" />
         </motion.div>
@@ -139,11 +139,10 @@ export default function Hero({ ready = true }: HeroProps) {
           variants={itemVariants}
           className="font-editorial text-[clamp(3.25rem,8.3vw,7.6rem)] font-normal leading-[0.99] tracking-[-0.055em] text-balance"
         >
-          Visual storytelling for
+          Make the moment
           <br />
           <span className="font-normal italic text-white/75">
-            brands, businesses
-            <br className="sm:hidden" /> &amp; events.
+            mean something.
           </span>
         </motion.h1>
 
