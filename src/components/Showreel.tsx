@@ -8,22 +8,6 @@ import {
   useTransform,
 } from "motion/react";
 
-const FPS = 24;
-const REEL_SECONDS = 92;
-
-function timecode(progress: number): string {
-  const clamped = Math.min(1, Math.max(0, progress));
-  const totalFrames = Math.floor(clamped * REEL_SECONDS * FPS);
-  const frames = totalFrames % FPS;
-  const totalSeconds = Math.floor(totalFrames / FPS);
-  const seconds = totalSeconds % 60;
-  const minutes = Math.floor(totalSeconds / 60) % 60;
-  const hours = Math.floor(totalSeconds / 3600);
-  const pad = (value: number) => String(value).padStart(2, "0");
-
-  return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}:${pad(frames)}`;
-}
-
 /**
  * A small framed image expands to fill the screen as the visitor scrolls,
  * while a running timecode ticks like a camera viewfinder.
@@ -44,14 +28,13 @@ export default function Showreel() {
   const titleY = useTransform(scrollYProgress, [0.12, 0.5], reduced ? ["0%", "0%"] : ["0%", "-30%"]);
   const detailOpacity = useTransform(scrollYProgress, [0.55, 0.8], reduced ? [1, 1] : [0, 1]);
   const detailY = useTransform(scrollYProgress, [0.55, 0.8], reduced ? ["0%", "0%"] : ["40%", "0%"]);
-  const time = useTransform(scrollYProgress, (value) => timecode(value));
 
   return (
     <section
       id="reel"
       ref={sectionRef}
       className="relative h-[280svh] bg-[#0a0a0a]"
-      aria-label="Showreel"
+      aria-label="Visual study"
     >
       <div className="sticky top-0 flex h-[100svh] min-h-[560px] items-center justify-center overflow-hidden">
         <motion.div
@@ -91,7 +74,7 @@ export default function Showreel() {
           >
             <p className="gold-kicker mb-5 text-[9px] font-semibold">A visual study</p>
             <h2 className="font-editorial text-[clamp(3.5rem,14vw,13rem)] leading-[0.9] tracking-[-0.06em] text-[#f8f9fa]">
-              Show<span className="italic text-[#d4af37]">reel</span>
+              In <span className="italic text-[#d4af37]">motion.</span>
             </h2>
           </motion.div>
 
