@@ -107,10 +107,10 @@ export default function Home() {
 
             <div className="mb-16 grid gap-6 border-b border-white/15 pb-12 md:grid-cols-[minmax(0,220px)_1fr] md:gap-12">
               <p className="gold-kicker text-[9px] font-semibold">
-                From BlueHaven Studios
+                The studio point of view
               </p>
               <p className="font-editorial max-w-[860px] text-[clamp(1.5rem,3vw,2.6rem)] leading-[1.18] tracking-[-0.03em] text-white/85">
-                At Bluehaven Studios, we specialize in designing professional portfolios and building a seamless platform where your clients can easily book your services.
+                AHVAÉ creates considered visual experiences for people, places and ideas worth remembering. From the first conversation to the final frame, every detail has a reason to be there.
               </p>
             </div>
 
@@ -175,7 +175,7 @@ export default function Home() {
 
             <div className="flex flex-col justify-between gap-3 border-t border-white/15 pt-6 text-[8px] uppercase tracking-[0.18em] text-white/35 sm:flex-row">
               <span>© {new Date().getFullYear()} AHVAÉ Studios. All rights reserved.</span>
-              <span>Made with intention.</span>
+              <span>Independent by design.</span>
             </div>
           </div>
         </footer>

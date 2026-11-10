@@ -8,22 +8,6 @@ import {
   useTransform,
 } from "motion/react";
 
-const FPS = 24;
-const REEL_SECONDS = 92;
-
-function timecode(progress: number): string {
-  const clamped = Math.min(1, Math.max(0, progress));
-  const totalFrames = Math.floor(clamped * REEL_SECONDS * FPS);
-  const frames = totalFrames % FPS;
-  const totalSeconds = Math.floor(totalFrames / FPS);
-  const seconds = totalSeconds % 60;
-  const minutes = Math.floor(totalSeconds / 60) % 60;
-  const hours = Math.floor(totalSeconds / 3600);
-  const pad = (value: number) => String(value).padStart(2, "0");
-
-  return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}:${pad(frames)}`;
-}
-
 /**
  * A small framed image expands to fill the screen as the visitor scrolls,
  * while a running timecode ticks like a camera viewfinder.
@@ -44,14 +28,13 @@ export default function Showreel() {
   const titleY = useTransform(scrollYProgress, [0.12, 0.5], reduced ? ["0%", "0%"] : ["0%", "-30%"]);
   const detailOpacity = useTransform(scrollYProgress, [0.55, 0.8], reduced ? [1, 1] : [0, 1]);
   const detailY = useTransform(scrollYProgress, [0.55, 0.8], reduced ? ["0%", "0%"] : ["40%", "0%"]);
-  const time = useTransform(scrollYProgress, (value) => timecode(value));
 
   return (
     <section
       id="reel"
       ref={sectionRef}
       className="relative h-[280svh] bg-[#0a0a0a]"
-      aria-label="Showreel"
+      aria-label="Visual study"
     >
       <div className="sticky top-0 flex h-[100svh] min-h-[560px] items-center justify-center overflow-hidden">
         <motion.div
@@ -76,29 +59,22 @@ export default function Showreel() {
           <span aria-hidden="true" className="absolute bottom-5 left-5 h-8 w-8 border-b border-l border-white/60 sm:bottom-10 sm:left-10" />
           <span aria-hidden="true" className="absolute bottom-5 right-5 h-8 w-8 border-b border-r border-white/60 sm:bottom-10 sm:right-10" />
 
-          {/* Recording indicator and timecode */}
-          <div className="absolute left-9 top-9 flex items-center gap-3 text-[9px] uppercase tracking-[0.24em] text-white/80 sm:left-16 sm:top-16">
-            <span className="relative flex h-2 w-2" aria-hidden="true">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#d4af37] opacity-70" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-[#d4af37]" />
-            </span>
-            Rec
+          {/* Editorial frame markers — this is a visual study, not a claimed live reel. */}
+          <div className="absolute left-9 top-9 text-[9px] uppercase tracking-[0.24em] text-white/75 sm:left-16 sm:top-16">
+            AHVAÉ <span className="text-[#d4af37]">/</span> Visual notes
           </div>
-          <motion.span
-            aria-hidden="true"
-            className="absolute right-9 top-9 font-mono text-[10px] tabular-nums tracking-[0.18em] text-white/80 sm:right-16 sm:top-16"
-          >
-            {time}
-          </motion.span>
+          <span className="absolute right-9 top-9 font-mono text-[9px] tracking-[0.18em] text-white/65 sm:right-16 sm:top-16">
+            FRAME STUDY — 01
+          </span>
 
           {/* Title that departs as the frame opens */}
           <motion.div
             className="absolute inset-0 flex flex-col items-center justify-center text-center"
             style={{ opacity: titleOpacity, y: titleY }}
           >
-            <p className="gold-kicker mb-5 text-[9px] font-semibold">Reel 2026</p>
+            <p className="gold-kicker mb-5 text-[9px] font-semibold">A visual study</p>
             <h2 className="font-editorial text-[clamp(3.5rem,14vw,13rem)] leading-[0.9] tracking-[-0.06em] text-[#f8f9fa]">
-              Show<span className="italic text-[#d4af37]">reel</span>
+              In <span className="italic text-[#d4af37]">motion.</span>
             </h2>
           </motion.div>
 
@@ -112,7 +88,7 @@ export default function Showreel() {
                 Motion · Light · Feeling
               </p>
               <p className="font-editorial max-w-[640px] text-[clamp(1.8rem,4vw,3.6rem)] leading-[1.02] tracking-[-0.04em] text-[#f8f9fa]">
-                Every frame, <span className="italic text-white/70">composed with intention.</span>
+                Light, movement, <span className="italic text-white/70">and the feeling between them.</span>
               </p>
             </div>
             <a

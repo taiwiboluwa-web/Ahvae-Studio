@@ -212,8 +212,8 @@ export default function Booking() {
             </Reveal>
           </h2>
           <p className="mt-8 max-w-[420px] text-[12px] leading-7 text-black/60">
-            Tell us what you are planning. We reply personally, usually within
-            two working days, with ideas and next steps.
+            Tell us what you are planning. We will review the details and follow up
+            personally to discuss fit, timing and next steps.
           </p>
 
           <ol className="mt-12 max-w-[420px] border-t border-black/15">
@@ -267,8 +267,8 @@ export default function Booking() {
                   Your email is ready to send.
                 </h3>
                 <p className="mt-6 max-w-[420px] text-[12px] leading-7 text-black/60">
-                  Your email app should have opened with your request filled in.
-                  Press send to reach the studio. If nothing opened, write to{" "}
+                  We have prepared an email draft with your request. Review it and press
+                  send to reach the studio. If no email app opened, write to{" "}
                   <a
                     className="text-[#9c7d28] underline underline-offset-4"
                     href={`mailto:${STUDIO_EMAIL}`}

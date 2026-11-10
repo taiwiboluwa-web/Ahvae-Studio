@@ -65,7 +65,7 @@ export default function Hero({ ready = true }: HeroProps) {
       onPointerMove={handlePointerMove}
       ref={sectionRef}
       id="home"
-      className="cinematic-grain relative flex min-h-[760px] h-[100svh] w-full flex-col items-center justify-center overflow-hidden bg-[#0a0a0a] text-[#f8f9fa]"
+      className="cinematic-grain relative flex min-h-[660px] h-[100svh] sm:min-h-[760px] w-full flex-col items-start justify-center overflow-hidden bg-[#0a0a0a] text-[#f8f9fa]"
     >
       <div className="absolute inset-0 z-0 overflow-hidden">
         <motion.div
@@ -73,13 +73,13 @@ export default function Hero({ ready = true }: HeroProps) {
           style={{
             y: backgroundY,
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1534447677768-be436bb09401?w=2200&q=90')",
+              "url('https://images.unsplash.com/photo-1485846234645-a62644f84728?w=2200&q=90')",
           }}
           initial={{ scale: 1.12, opacity: 0.55 }}
           animate={{ scale: 1.02, opacity: 0.42 }}
           transition={{ duration: 12, ease: "easeOut" }}
         />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_42%,rgba(36,35,31,0.10),rgba(10,10,10,0.82)_72%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,5,5,0.82)_0%,rgba(5,5,5,0.58)_46%,rgba(5,5,5,0.12)_100%)]" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-transparent to-[#0a0a0a]" />
       </div>
 
@@ -122,7 +122,7 @@ export default function Hero({ ready = true }: HeroProps) {
       </header>
 
       <motion.div
-        className="relative z-10 mx-auto flex w-full max-w-[1100px] flex-col items-center px-5 text-center sm:px-8"
+        className="relative z-10 mx-auto flex w-full max-w-[1500px] flex-col items-start px-6 text-left sm:px-10 lg:px-16"
         variants={containerVariants}
         initial="hidden"
         animate={ready ? "show" : "hidden"}
@@ -130,26 +130,25 @@ export default function Hero({ ready = true }: HeroProps) {
         <motion.div variants={itemVariants} className="mb-7 flex items-center gap-3">
           <span className="h-px w-8 bg-[#d4af37]/80" />
           <p className="gold-kicker text-[9px] font-medium sm:text-[10px]">
-            A visual production studio
+            Independent visual production
           </p>
           <span className="h-px w-8 bg-[#d4af37]/80" />
         </motion.div>
 
         <motion.h1
           variants={itemVariants}
-          className="font-editorial text-[clamp(3.25rem,8.3vw,7.6rem)] font-normal leading-[0.99] tracking-[-0.055em] text-balance"
+          className="font-editorial text-[clamp(3.25rem,9.4vw,9.4rem)] font-normal leading-[0.99] tracking-[-0.055em] text-balance"
         >
-          Visual storytelling for
+          Make the moment
           <br />
           <span className="font-normal italic text-white/75">
-            brands, businesses
-            <br className="sm:hidden" /> &amp; events.
+            mean something.
           </span>
         </motion.h1>
 
         <motion.p
           variants={itemVariants}
-          className="mt-9 max-w-[480px] text-[10px] leading-7 tracking-[0.15em] text-white/58 sm:text-[11px]"
+          className="mt-9 max-w-[520px] text-[10px] leading-7 tracking-[0.15em] text-white/65 sm:text-[11px]"
         >
           FILM <span className="mx-3 text-[#d4af37]">/</span>
           PHOTOGRAPHY <span className="mx-3 text-[#d4af37]">/</span>
@@ -164,11 +163,11 @@ export default function Hero({ ready = true }: HeroProps) {
           <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/25 text-base">
             ↓
           </span>
-          Explore the studio
+          Discover the studio
         </motion.a>
       </motion.div>
 
-      <div className="absolute bottom-8 left-7 right-7 z-10 flex items-end justify-between text-[8px] uppercase tracking-[0.22em] text-white/40 sm:left-10 sm:right-10 lg:left-16 lg:right-16">
+      <div className="absolute bottom-8 left-6 right-6 z-10 flex items-end justify-between text-[8px] uppercase tracking-[0.22em] text-white/55 sm:left-10 sm:right-10 lg:left-16 lg:right-16">
         <span>Ontario, Canada</span>
         <span className="text-right">Images with intention.<br className="sm:hidden" /> Stories with presence.</span>
       </div>

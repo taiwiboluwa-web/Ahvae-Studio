@@ -1,18 +1,20 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { DM_Sans, Cormorant_Garamond } from "next/font/google";
 import "lenis/dist/lenis.css";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 
-const inter = Inter({
+const sans = DM_Sans({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-dm-sans",
   display: "swap",
 });
 
-const playfair = Playfair_Display({
+const editorial = Cormorant_Garamond({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-cormorant",
   display: "swap",
 });
 
@@ -22,7 +24,7 @@ export const metadata: Metadata = {
     template: "%s | AHVAÉ Studios",
   },
   description:
-    "Visual storytelling for brands, businesses and events. AHVAÉ Studios brings film, photography and creative direction together to create work with feeling. Based in Ontario, Canada.",
+    "AHVAÉ Studios is an independent visual production studio bringing film, photography and creative direction together to create distinctive work with feeling.",
   applicationName: "AHVAÉ Studios",
   creator: "AHVAÉ Studios",
   keywords: [
@@ -38,7 +40,7 @@ export const metadata: Metadata = {
     siteName: "AHVAÉ Studios",
     title: "AHVAÉ Studios — Visual Storytelling",
     description:
-      "Visual storytelling for brands, businesses and events. Film, photography and creative direction. Based in Ontario, Canada.",
+      "Film, photography and creative direction for stories that deserve to be felt.",
   },
   twitter: {
     card: "summary_large_image",
@@ -64,7 +66,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="en" className={`${sans.variable} ${editorial.variable}`}>
       <body>
         <SmoothScroll>{children}</SmoothScroll>
       </body>
