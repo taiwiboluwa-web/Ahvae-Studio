@@ -70,7 +70,7 @@ export default function Gallery() {
           </h2>
         </div>
         <p className="max-w-[300px] text-[11px] leading-6 text-black/55 md:pb-2 md:text-right">
-          A set of conceptual explorations showing the moods, compositions and visual direction AHVAÉ is building toward.
+          A set of conceptual explorations showing the moods, compositions and visual direction AHVAÉ is building toward. These are studio studies, not commissioned client projects.
         </p>
       </div>
 
