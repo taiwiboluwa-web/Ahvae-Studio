@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import Reveal from "@/components/Reveal";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -55,9 +56,10 @@ export default function Process() {
               How we work
             </p>
             <h2 className="font-editorial text-[clamp(3rem,7vw,6.4rem)] leading-[0.92] tracking-[-0.055em]">
-              From first idea
-              <br />
-              <span className="italic text-white/45">to final frame.</span>
+              <Reveal>From first idea</Reveal>
+              <Reveal delay={0.12}>
+                <span className="italic text-white/45">to final frame.</span>
+              </Reveal>
             </h2>
           </div>
           <p className="max-w-[300px] text-[11px] leading-6 text-white/50 md:pb-2 md:text-right">

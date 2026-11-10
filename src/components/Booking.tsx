@@ -2,6 +2,8 @@
 
 import { useRef, useState, type FormEvent } from "react";
 import { AnimatePresence, motion } from "motion/react";
+import Reveal from "@/components/Reveal";
+import Magnetic from "@/components/Magnetic";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 const STUDIO_EMAIL = "ahvaestudios@gmail.com";
@@ -204,9 +206,10 @@ export default function Booking() {
             Book the studio
           </p>
           <h2 className="font-editorial text-[clamp(3rem,6.6vw,6rem)] leading-[0.92] tracking-[-0.055em] text-[#0a0a0a]">
-            Let&rsquo;s shape
-            <br />
-            <span className="italic text-black/40">your story.</span>
+            <Reveal>Let&rsquo;s shape</Reveal>
+            <Reveal delay={0.12}>
+              <span className="italic text-black/40">your story.</span>
+            </Reveal>
           </h2>
           <p className="mt-8 max-w-[420px] text-[12px] leading-7 text-black/60">
             Tell us what you are planning. We reply personally, usually within
@@ -374,15 +377,17 @@ export default function Booking() {
                   onBlur={() => validateOnBlur("details")}
                 />
 
+                <Magnetic className="mt-4 block w-full sm:inline-block sm:w-auto">
                 <button
                   type="submit"
-                  className="group mt-4 inline-flex w-full items-center justify-between gap-6 rounded-full bg-[#0a0a0a] px-7 py-5 text-[10px] font-medium uppercase tracking-[0.2em] text-white transition-colors duration-300 hover:bg-[#1a1a1a] sm:w-auto sm:min-w-[320px]"
+                  className="group inline-flex w-full items-center justify-between gap-6 rounded-full bg-[#0a0a0a] px-7 py-5 text-[10px] font-medium uppercase tracking-[0.2em] text-white transition-colors duration-300 hover:bg-[#1a1a1a] sm:w-auto sm:min-w-[320px]"
                 >
                   <span>Request a booking</span>
                   <span className="text-lg text-[#d4af37] transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
                     ↗
                   </span>
                 </button>
+                </Magnetic>
               </motion.form>
             )}
           </AnimatePresence>

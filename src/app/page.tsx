@@ -13,6 +13,8 @@ import Marquee from "@/components/Marquee";
 import Manifesto from "@/components/Manifesto";
 import Process from "@/components/Process";
 import Booking from "@/components/Booking";
+import Showreel from "@/components/Showreel";
+import Magnetic from "@/components/Magnetic";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -71,6 +73,7 @@ export default function Home() {
         <Marquee />
         <Manifesto />
         <Scrollytelling />
+        <Showreel />
         <Gallery />
         <Process />
         <Booking />
@@ -92,15 +95,17 @@ export default function Home() {
                   <span className="italic text-white/45">to tell?</span>
                 </h2>
               </div>
-              <a
-                href="mailto:ahvaestudios@gmail.com?subject=Project%20enquiry%20%E2%80%94%20AHVA%C3%89%20Studios"
-                className="glass-panel group inline-flex w-fit items-center gap-6 rounded-full px-6 py-4 text-[9px] uppercase tracking-[0.19em] transition-colors hover:border-[#d4af37]/60"
-              >
-                <span>Start a conversation</span>
-                <span className="text-lg text-[#d4af37] transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1">
-                  ↗
-                </span>
-              </a>
+              <Magnetic className="inline-block w-fit">
+                <a
+                  href="mailto:ahvaestudios@gmail.com?subject=Project%20enquiry%20%E2%80%94%20AHVA%C3%89%20Studios"
+                  className="glass-panel group inline-flex w-fit items-center gap-6 rounded-full px-6 py-4 text-[9px] uppercase tracking-[0.19em] transition-colors hover:border-[#d4af37]/60"
+                >
+                  <span>Start a conversation</span>
+                  <span className="text-lg text-[#d4af37] transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1">
+                    ↗
+                  </span>
+                </a>
+              </Magnetic>
             </div>
 
             <div className="mb-16 grid gap-6 border-b border-white/15 pb-12 md:grid-cols-[minmax(0,220px)_1fr] md:gap-12">

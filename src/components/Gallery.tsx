@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "motion/react";
+import Reveal from "@/components/Reveal";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -63,7 +64,9 @@ export default function Gallery() {
             A considered collection
           </p>
           <h2 className="font-editorial text-[clamp(3.25rem,7vw,6.6rem)] leading-[0.92] tracking-[-0.055em] text-[#0a0a0a]">
-            Selected <span className="italic text-black/40">work.</span>
+            <Reveal>
+              Selected <span className="italic text-black/40">work.</span>
+            </Reveal>
           </h2>
         </div>
         <p className="max-w-[300px] text-[11px] leading-6 text-black/55 md:pb-2 md:text-right">

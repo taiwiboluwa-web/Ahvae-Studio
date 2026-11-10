@@ -8,6 +8,7 @@ import {
   useSpring,
   useTransform,
 } from "motion/react";
+import Reveal from "@/components/Reveal";
 
 const disciplines = [
   {
@@ -73,6 +74,9 @@ export default function Scrollytelling() {
     mass: 0.25,
   });
 
+  /* Images drift against the track so each card feels layered in depth. */
+  const imageX = useTransform(scrollYProgress, [0, 1], ["5%", "-5%"]);
+
   useEffect(() => {
     const viewport = viewportRef.current;
     const track = trackRef.current;
@@ -110,9 +114,10 @@ export default function Scrollytelling() {
               The way we see it
             </p>
             <h2 className="font-editorial text-[clamp(2.7rem,6vw,5.5rem)] leading-[0.98] tracking-[-0.045em] text-[#0a0a0a]">
-              Different disciplines.
-              <br />
-              <span className="italic text-black/45">One point of view.</span>
+              <Reveal>Different disciplines.</Reveal>
+              <Reveal delay={0.12}>
+                <span className="italic text-black/45">One point of view.</span>
+              </Reveal>
             </h2>
           </div>
           <p className="hidden max-w-[210px] pb-2 text-right text-[9px] leading-6 tracking-[0.12em] text-black/45 lg:block">
@@ -134,12 +139,17 @@ export default function Scrollytelling() {
                 className="group relative w-[82vw] max-w-[680px] shrink-0 sm:w-[58vw] lg:w-[43vw] xl:w-[39vw]"
               >
                 <div className="relative h-[min(51svh,470px)] min-h-[300px] overflow-hidden bg-[#d7d5d0]">
-                  <div
-                    role="img"
-                    aria-label={item.imageAlt}
-                    className="absolute inset-0 bg-cover bg-center transition-transform duration-[1400ms] ease-out group-hover:scale-[1.045]"
-                    style={{ backgroundImage: `url("${item.image}")` }}
-                  />
+                  <motion.div
+                    className="absolute -inset-x-[10%] inset-y-0"
+                    style={{ x: imageX }}
+                  >
+                    <div
+                      role="img"
+                      aria-label={item.imageAlt}
+                      className="absolute inset-0 bg-cover bg-center transition-transform duration-[1400ms] ease-out group-hover:scale-[1.045]"
+                      style={{ backgroundImage: `url("${item.image}")` }}
+                    />
+                  </motion.div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/5 to-black/10" />
                   <div className="absolute left-5 top-5 flex items-center gap-3 text-[9px] uppercase tracking-[0.2em] text-white/80 sm:left-7 sm:top-7">
                     <span className="text-[#e1c46e]">{item.number}</span>

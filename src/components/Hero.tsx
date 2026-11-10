@@ -1,7 +1,14 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform, type Variants } from "motion/react";
+import { useRef, type PointerEvent as ReactPointerEvent } from "react";
+import {
+  motion,
+  useMotionValue,
+  useScroll,
+  useSpring,
+  useTransform,
+  type Variants,
+} from "motion/react";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -38,8 +45,24 @@ export default function Hero({ ready = true }: HeroProps) {
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "14%"]);
   const veilOpacity = useTransform(scrollYProgress, [0, 0.85], [0, 0.92]);
 
+  /* A soft champagne light that follows a mouse pointer. It is a fixed-size
+     layer moved with transforms, so it never triggers layout or repaint. */
+  const lightX = useMotionValue(-1000);
+  const lightY = useMotionValue(-1000);
+  const springLightX = useSpring(lightX, { stiffness: 90, damping: 24, mass: 0.6 });
+  const springLightY = useSpring(lightY, { stiffness: 90, damping: 24, mass: 0.6 });
+
+  const handlePointerMove = (event: ReactPointerEvent<HTMLElement>) => {
+    if (event.pointerType !== "mouse") return;
+
+    const rect = event.currentTarget.getBoundingClientRect();
+    lightX.set(event.clientX - rect.left);
+    lightY.set(event.clientY - rect.top);
+  };
+
   return (
     <section
+      onPointerMove={handlePointerMove}
       ref={sectionRef}
       id="home"
       className="cinematic-grain relative flex min-h-[760px] h-[100svh] w-full flex-col items-center justify-center overflow-hidden bg-[#0a0a0a] text-[#f8f9fa]"
@@ -59,6 +82,17 @@ export default function Hero({ ready = true }: HeroProps) {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_42%,rgba(36,35,31,0.10),rgba(10,10,10,0.82)_72%)]" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-transparent to-[#0a0a0a]" />
       </div>
+
+      <motion.div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-0 top-0 z-[3] -ml-[320px] -mt-[320px] h-[640px] w-[640px] rounded-full"
+        style={{
+          x: springLightX,
+          y: springLightY,
+          background:
+            "radial-gradient(closest-side, rgba(212,175,55,0.18), rgba(212,175,55,0.05) 55%, rgba(10,10,10,0) 100%)",
+        }}
+      />
 
       <motion.div
         aria-hidden="true"
