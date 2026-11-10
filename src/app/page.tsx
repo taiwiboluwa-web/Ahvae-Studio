@@ -114,6 +114,15 @@ export default function Home() {
               </p>
             </div>
 
+            <div className="mb-16 grid gap-6 border-b border-white/15 pb-12 md:grid-cols-[minmax(0,220px)_1fr] md:gap-12">
+              <p className="gold-kicker text-[9px] font-semibold">
+                From BlueHaven Studios
+              </p>
+              <p className="font-editorial max-w-[860px] text-[clamp(1.5rem,3vw,2.6rem)] leading-[1.18] tracking-[-0.03em] text-white/85">
+                At Bluehaven Studios, we specialize in designing professional portfolios and building a seamless platform where your clients can easily book your services.
+              </p>
+            </div>
+
             <div className="grid gap-10 pb-16 sm:grid-cols-2 lg:grid-cols-4">
               <div>
                 <p className="mb-4 text-[8px] uppercase tracking-[0.25em] text-white/35">

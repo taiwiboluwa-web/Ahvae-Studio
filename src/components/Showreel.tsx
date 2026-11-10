@@ -10,7 +10,7 @@ import {
 
 /**
  * A small framed image expands to fill the screen as the visitor scrolls,
- * while a running timecode ticks like a camera viewfinder.
+ * framed by viewfinder corners.
  */
 export default function Showreel() {
   const sectionRef = useRef<HTMLElement>(null);
