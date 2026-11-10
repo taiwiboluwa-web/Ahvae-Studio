@@ -65,7 +65,7 @@ export default function Hero({ ready = true }: HeroProps) {
       onPointerMove={handlePointerMove}
       ref={sectionRef}
       id="home"
-      className="cinematic-grain relative flex min-h-[760px] h-[100svh] w-full flex-col items-center justify-center overflow-hidden bg-[#0a0a0a] text-[#f8f9fa]"
+      className="cinematic-grain relative flex min-h-[660px] h-[100svh] sm:min-h-[760px] w-full flex-col items-center justify-center overflow-hidden bg-[#0a0a0a] text-[#f8f9fa]"
     >
       <div className="absolute inset-0 z-0 overflow-hidden">
         <motion.div
