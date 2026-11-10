@@ -84,7 +84,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
                   key={src}
                   className="preloader-ring-card grayscale"
                   role="img"
-                  aria-label={`AHVAÉ portfolio image ${index + 1}`}
+                  aria-label={`AHVAÉ studio reference image ${index + 1}`}
                   style={{
                     backgroundImage: `linear-gradient(rgba(10,10,10,.08),rgba(10,10,10,.08)),url("${src}")`,
                     transform: `rotateY(${angle}deg) translateZ(clamp(190px, 25vw, 310px))`,
