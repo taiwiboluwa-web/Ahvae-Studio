@@ -101,9 +101,6 @@ export default function Home() {
                   className="glass-panel group inline-flex w-fit items-center gap-6 rounded-full px-6 py-4 text-[9px] uppercase tracking-[0.19em] transition-colors hover:border-[#d4af37]/60"
                 >
                   <span>Start a conversation</span>
-                  <span className="text-lg text-[#d4af37] transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1">
-                    ↗
-                  </span>
                 </a>
               </Magnetic>
             </div>
@@ -155,7 +152,7 @@ export default function Home() {
                   rel="noreferrer"
                   className="mt-3 block text-[10px] text-white/50 transition-colors hover:text-[#d4af37]"
                 >
-                  Instagram ↗
+                  Instagram
                 </a>
               </div>
               <div>

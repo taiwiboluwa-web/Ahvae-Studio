@@ -117,7 +117,7 @@ export default function Hero({ ready = true }: HeroProps) {
           href="#book"
           className="glass-panel rounded-full px-4 py-2.5 text-[9px] uppercase tracking-[0.18em] text-white/90 transition-colors hover:border-[#d4af37]/60 hover:text-[#d4af37] sm:px-5"
         >
-          Start a project <span className="ml-2 text-[#d4af37]">↗</span>
+          Start a project
         </a>
       </header>
 

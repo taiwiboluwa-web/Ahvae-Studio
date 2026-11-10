@@ -152,9 +152,6 @@ export default function Gallery() {
                 </motion.p>
               </div>
 
-              <span className="absolute bottom-6 right-5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/45 text-sm text-white transition-all duration-500 group-hover:border-[#d4af37] group-hover:bg-[#d4af37] group-hover:text-[#0a0a0a] sm:bottom-8 sm:right-7">
-                ↗
-              </span>
             </motion.button>
           );
         })}

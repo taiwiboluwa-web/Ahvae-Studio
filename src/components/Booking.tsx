@@ -380,12 +380,9 @@ export default function Booking() {
                 <Magnetic className="mt-4 block w-full sm:inline-block sm:w-auto">
                 <button
                   type="submit"
-                  className="group inline-flex w-full items-center justify-between gap-6 rounded-full bg-[#0a0a0a] px-7 py-5 text-[10px] font-medium uppercase tracking-[0.2em] text-white transition-colors duration-300 hover:bg-[#1a1a1a] sm:w-auto sm:min-w-[320px]"
+                  className="group inline-flex w-full items-center justify-center gap-6 rounded-full bg-[#0a0a0a] px-7 py-5 text-[10px] font-medium uppercase tracking-[0.2em] text-white transition-colors duration-300 hover:bg-[#1a1a1a] sm:w-auto sm:min-w-[320px]"
                 >
                   <span>Request a booking</span>
-                  <span className="text-lg text-[#d4af37] transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
-                    ↗
-                  </span>
                 </button>
                 </Magnetic>
               </motion.form>

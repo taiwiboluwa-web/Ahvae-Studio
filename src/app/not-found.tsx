@@ -27,7 +27,6 @@ export default function NotFound() {
         className="glass-panel relative mt-12 inline-flex items-center gap-4 rounded-full px-7 py-4 text-[9px] uppercase tracking-[0.2em] text-white transition-colors duration-300 hover:border-[#d4af37]/60 hover:text-[#d4af37]"
       >
         Return to the studio
-        <span className="text-lg text-[#d4af37]">↗</span>
       </Link>
     </main>
   );

@@ -172,7 +172,6 @@ export default function Scrollytelling() {
                   <p className="max-w-[410px] text-[11px] leading-6 text-black/60 sm:text-xs">
                     {item.copy}
                   </p>
-                  <span className="mt-1 shrink-0 text-lg text-[#b08c31]">↗</span>
                 </div>
               </article>
             ))}
