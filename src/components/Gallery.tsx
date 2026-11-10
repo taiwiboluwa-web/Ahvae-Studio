@@ -12,7 +12,7 @@ const projects = [
     index: "01",
     title: "The Human Form",
     category: "Portraiture",
-    year: "Visual study",
+    year: "Concept study",
     blurb: "Portraits shaped by soft light, restraint and presence.",
     image:
       "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1500&q=90",
@@ -61,17 +61,16 @@ export default function Gallery() {
       <div className="mb-12 flex flex-col justify-between gap-7 md:mb-16 md:flex-row md:items-end">
         <div>
           <p className="gold-kicker mb-4 text-[9px] font-semibold">
-            A considered collection
+            The visual language
           </p>
           <h2 className="font-editorial text-[clamp(3.25rem,7vw,6.6rem)] leading-[0.92] tracking-[-0.055em] text-[#0a0a0a]">
             <Reveal>
-              Selected <span className="italic text-black/40">work.</span>
+              Visual <span className="italic text-black/40">studies.</span>
             </Reveal>
           </h2>
         </div>
         <p className="max-w-[300px] text-[11px] leading-6 text-black/55 md:pb-2 md:text-right">
-          A glimpse into the imagery, atmosphere and stories that shape our
-          creative practice.
+          A set of conceptual explorations showing the moods, compositions and visual direction AHVAÉ is building toward.
         </p>
       </div>
 
@@ -162,7 +161,7 @@ export default function Gallery() {
 
       <div className="mt-7 flex items-center justify-between border-t border-black/15 pt-5">
         <span className="text-[8px] uppercase tracking-[0.22em] text-black/45">
-          Film · Photography · Creative direction
+          Conceptual imagery · Visual direction
         </span>
         <span className="text-[8px] uppercase tracking-[0.22em] text-black/45">
           AHVAÉ Studios
