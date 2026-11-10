@@ -86,6 +86,7 @@ export default function Gallery() {
             <motion.button
               key={project.id}
               type="button"
+              data-cursor="view"
               onMouseEnter={() => setActiveProject(project.id)}
               onFocus={() => setActiveProject(project.id)}
               onBlur={() =>

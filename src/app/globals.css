@@ -152,6 +152,24 @@ button {
   -webkit-backface-visibility: hidden;
 }
 
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.marquee-track {
+  animation: marquee 42s linear infinite;
+  will-change: transform;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
 .scrollbar-hidden {
   scrollbar-width: none;
 }
@@ -183,6 +201,10 @@ button {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none !important;
+  }
+
   *,
   *::before,
   *::after {

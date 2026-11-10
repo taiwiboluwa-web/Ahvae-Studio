@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, type Variants } from "motion/react";
+import { useRef } from "react";
+import { motion, useScroll, useTransform, type Variants } from "motion/react";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -26,8 +27,20 @@ type HeroProps = {
 };
 
 export default function Hero({ ready = true }: HeroProps) {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+
+  /* Background drifts slower than the page; content darkens as it leaves. */
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "14%"]);
+  const veilOpacity = useTransform(scrollYProgress, [0, 0.85], [0, 0.92]);
+
   return (
     <section
+      ref={sectionRef}
       id="home"
       className="cinematic-grain relative flex min-h-[760px] h-[100svh] w-full flex-col items-center justify-center overflow-hidden bg-[#0a0a0a] text-[#f8f9fa]"
     >
@@ -35,6 +48,7 @@ export default function Hero({ ready = true }: HeroProps) {
         <motion.div
           className="absolute inset-0 scale-[1.04] bg-cover bg-center"
           style={{
+            y: backgroundY,
             backgroundImage:
               "url('https://images.unsplash.com/photo-1534447677768-be436bb09401?w=2200&q=90')",
           }}
@@ -45,6 +59,12 @@ export default function Hero({ ready = true }: HeroProps) {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_42%,rgba(36,35,31,0.10),rgba(10,10,10,0.82)_72%)]" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-transparent to-[#0a0a0a]" />
       </div>
+
+      <motion.div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-[15] bg-[#0a0a0a]"
+        style={{ opacity: veilOpacity }}
+      />
 
       <header className="absolute left-0 right-0 top-0 z-20 flex items-center justify-between px-6 py-7 sm:px-10 lg:px-16">
         <a
@@ -57,10 +77,10 @@ export default function Hero({ ready = true }: HeroProps) {
         <nav className="hidden items-center gap-9 text-[9px] uppercase tracking-[0.22em] text-white/65 md:flex">
           <a className="transition-colors hover:text-[#d4af37]" href="#approach">Approach</a>
           <a className="transition-colors hover:text-[#d4af37]" href="#work">Selected work</a>
-          <a className="transition-colors hover:text-[#d4af37]" href="#contact">Contact</a>
+          <a className="transition-colors hover:text-[#d4af37]" href="#book">Book</a>
         </nav>
         <a
-          href="#contact"
+          href="#book"
           className="glass-panel rounded-full px-4 py-2.5 text-[9px] uppercase tracking-[0.18em] text-white/90 transition-colors hover:border-[#d4af37]/60 hover:text-[#d4af37] sm:px-5"
         >
           Start a project <span className="ml-2 text-[#d4af37]">↗</span>

@@ -7,6 +7,12 @@ import Preloader from "@/components/Preloader";
 import Hero from "@/components/Hero";
 import Scrollytelling from "@/components/Scrollytelling";
 import Gallery from "@/components/Gallery";
+import Cursor from "@/components/Cursor";
+import Nav from "@/components/Nav";
+import Marquee from "@/components/Marquee";
+import Manifesto from "@/components/Manifesto";
+import Process from "@/components/Process";
+import Booking from "@/components/Booking";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -47,6 +53,11 @@ export default function Home() {
         )}
       </AnimatePresence>
 
+      {/* Fixed layers live outside the animated wrapper so transforms on it
+          can never break their positioning. */}
+      <Cursor />
+      {!isLoading && <Nav />}
+
       <motion.div
         animate={{
           opacity: isLoading ? 0 : 1,
@@ -57,8 +68,12 @@ export default function Home() {
         style={{ pointerEvents: isLoading ? "none" : "auto" }}
       >
         <Hero ready={!isLoading} />
+        <Marquee />
+        <Manifesto />
         <Scrollytelling />
         <Gallery />
+        <Process />
+        <Booking />
 
         <footer
           id="contact"
@@ -114,6 +129,8 @@ export default function Home() {
                 <div className="flex flex-col items-start gap-3 text-[10px] text-white/65">
                   <a className="transition-colors hover:text-[#d4af37]" href="#approach">Our approach</a>
                   <a className="transition-colors hover:text-[#d4af37]" href="#work">Selected work</a>
+                  <a className="transition-colors hover:text-[#d4af37]" href="#process">How we work</a>
+                  <a className="transition-colors hover:text-[#d4af37]" href="#book">Book the studio</a>
                   <a className="transition-colors hover:text-[#d4af37]" href="#home">Back to top ↑</a>
                 </div>
               </div>
@@ -146,6 +163,13 @@ export default function Home() {
                 </p>
               </div>
             </div>
+
+            <p
+              aria-hidden="true"
+              className="font-editorial mb-10 select-none text-center text-[clamp(4.5rem,22vw,20rem)] leading-[0.82] tracking-[-0.06em] text-transparent [-webkit-text-stroke:1px_rgba(212,175,55,0.35)]"
+            >
+              AHVAÉ
+            </p>
 
             <div className="flex flex-col justify-between gap-3 border-t border-white/15 pt-6 text-[8px] uppercase tracking-[0.18em] text-white/35 sm:flex-row">
               <span>© {new Date().getFullYear()} AHVAÉ Studios. All rights reserved.</span>
