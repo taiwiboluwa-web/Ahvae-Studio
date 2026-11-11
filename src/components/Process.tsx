@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useRef } from "react";
+import { animate, stagger } from "animejs";
 import { motion } from "motion/react";
 import Reveal from "@/components/Reveal";
 
@@ -33,6 +35,38 @@ const steps = [
 ];
 
 export default function Process() {
+  const stepsRef = useRef<HTMLOListElement>(null);
+
+  useEffect(() => {
+    const list = stepsRef.current;
+    if (!list) return;
+
+    const items = Array.from(list.querySelectorAll<HTMLElement>("[data-process-step]"));
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    if (reducedMotion.matches) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+
+        animate(items, {
+          opacity: [0, 1],
+          y: [34, 0],
+          delay: stagger(115, { from: "first" }),
+          duration: 950,
+          ease: "outExpo",
+        });
+
+        observer.disconnect();
+      },
+      { threshold: 0.18, rootMargin: "0px 0px -8% 0px" },
+    );
+
+    observer.observe(list);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
       id="process"
@@ -68,15 +102,12 @@ export default function Process() {
           </p>
         </motion.div>
 
-        <ol className="border-b border-white/15">
-          {steps.map((step, index) => (
-            <motion.li
+        <ol ref={stepsRef} className="border-b border-white/15">
+          {steps.map((step) => (
+            <li
               key={step.number}
+              data-process-step
               className="group grid gap-4 border-t border-white/15 py-9 md:grid-cols-[110px_1.1fr_1fr_220px] md:items-start md:gap-10 md:py-12"
-              initial={{ opacity: 0, y: 36 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-8% 0px" }}
-              transition={{ duration: 0.9, ease: EASE, delay: index * 0.05 }}
             >
               <span className="font-editorial text-xl italic text-[#d4af37]">
                 {step.number}
@@ -90,7 +121,7 @@ export default function Process() {
               <p className="text-[8px] uppercase tracking-[0.22em] text-white/35 md:text-right">
                 {step.detail}
               </p>
-            </motion.li>
+            </li>
           ))}
         </ol>
       </div>
