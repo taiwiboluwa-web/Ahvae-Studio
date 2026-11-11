@@ -212,8 +212,7 @@ export default function Booking() {
             </Reveal>
           </h2>
           <p className="mt-8 max-w-[420px] text-[12px] leading-7 text-black/60">
-            Tell us what you are planning. We will review the details and follow up
-            personally to discuss fit, timing and next steps.
+            Give us the rough idea, the date, the feeling you are chasing. A real person at the studio will read your note and get back to you with the next step.
           </p>
 
           <ol className="mt-12 max-w-[420px] border-t border-black/15">

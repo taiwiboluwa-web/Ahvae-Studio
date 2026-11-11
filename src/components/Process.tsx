@@ -11,25 +11,25 @@ const steps = [
   {
     number: "01",
     title: "Discover",
-    copy: "We begin by listening. Your brand, your audience and the feeling you want people to leave with shape everything that follows.",
+    copy: "First, we get curious. The people, the place, the brief—and the little detail that makes this story yours.",
     detail: "Brief · Research · References",
   },
   {
     number: "02",
     title: "Direct",
-    copy: "Concept, mood, locations and a clear visual language are set before a single frame is captured, so every choice has a purpose.",
+    copy: "We find the angle, build the visual language and make a plan that gives the idea room to breathe.",
     detail: "Concept · Treatment · Planning",
   },
   {
     number: "03",
     title: "Capture",
-    copy: "On set and on location we work quietly and precisely, giving your story the light, movement and presence it deserves.",
+    copy: "On the day, we pay attention: to light, to timing, and to the moments that happen between the planned ones.",
     detail: "Film · Photography · Events",
   },
   {
     number: "04",
     title: "Deliver",
-    copy: "Editing, colour and finishing are handled with care, then delivered in the formats you need, ready for every platform.",
+    copy: "We shape the strongest frames, finish every detail and hand over work made to travel well.",
     detail: "Edit · Grade · Delivery",
   },
 ];

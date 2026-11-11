@@ -11,10 +11,10 @@ import {
 } from "motion/react";
 
 const statement =
-  "We believe every brand, business and event carries a story worth telling beautifully. Our work is to find it, frame it and make people feel it.";
+  "We are not here to make more content. We are here to make the frame you remember, the image you return to, the feeling that outlives the scroll.";
 
 const words = statement.split(" ");
-const accents = new Set(["story", "beautifully", "feel"]);
+const accents = new Set(["remember", "image", "feeling"]);
 
 type WordProps = {
   word: string;

@@ -87,12 +87,12 @@ export default function Home() {
             <div className="mb-16 flex flex-col justify-between gap-8 border-b border-white/15 pb-12 md:flex-row md:items-end">
               <div>
                 <p className="gold-kicker mb-5 text-[9px] font-semibold">
-                  The next frame begins here
+                  Got something worth feeling?
                 </p>
                 <h2 className="font-editorial text-[clamp(3.5rem,9vw,8.5rem)] leading-[0.88] tracking-[-0.055em]">
-                  Have a story
+                  Have something
                   <br />
-                  <span className="italic text-white/45">to tell?</span>
+                  <span className="italic text-white/45">worth feeling?</span>
                 </h2>
               </div>
               <Magnetic className="inline-block w-fit">
@@ -110,16 +110,7 @@ export default function Home() {
                 The studio point of view
               </p>
               <p className="font-editorial max-w-[860px] text-[clamp(1.5rem,3vw,2.6rem)] leading-[1.18] tracking-[-0.03em] text-white/85">
-                AHVAÉ creates considered visual experiences for people, places and ideas worth remembering. From the first conversation to the final frame, every detail has a reason to be there.
-              </p>
-            </div>
-
-            <div className="mb-16 grid gap-6 border-b border-white/15 pb-12 md:grid-cols-[minmax(0,220px)_1fr] md:gap-12">
-              <p className="gold-kicker text-[9px] font-semibold">
-                From BlueHaven Studios
-              </p>
-              <p className="font-editorial max-w-[860px] text-[clamp(1.5rem,3vw,2.6rem)] leading-[1.18] tracking-[-0.03em] text-white/85">
-                At Bluehaven Studios, we specialize in designing professional portfolios and building a seamless platform where your clients can easily book your services.
+                We make films and photographs with a clear point of view: thoughtful in the planning, alive in the moment, and impossible to mistake for filler.
               </p>
             </div>
 

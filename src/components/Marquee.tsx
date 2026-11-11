@@ -1,10 +1,10 @@
 const items = [
-  "Film",
-  "Photography",
-  "Creative Direction",
-  "Brand Stories",
-  "Event Coverage",
-  "Visual Identity",
+  "Film with feeling",
+  "Images that linger",
+  "Creative direction",
+  "Good light. Better stories.",
+  "No filler. All feeling.",
+  "Made with intention.",
 ];
 
 function Group({ hidden = false }: { hidden?: boolean }) {

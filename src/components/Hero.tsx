@@ -130,7 +130,7 @@ export default function Hero({ ready = true }: HeroProps) {
         <motion.div variants={itemVariants} className="mb-7 flex items-center gap-3">
           <span className="h-px w-8 bg-[#d4af37]/80" />
           <p className="gold-kicker text-[9px] font-medium sm:text-[10px]">
-            Independent visual production
+            Independent image-making studio
           </p>
           <span className="h-px w-8 bg-[#d4af37]/80" />
         </motion.div>
@@ -139,10 +139,10 @@ export default function Hero({ ready = true }: HeroProps) {
           variants={itemVariants}
           className="font-editorial text-[clamp(3.25rem,9.4vw,9.4rem)] font-normal leading-[0.99] tracking-[-0.055em] text-balance"
         >
-          Make the moment
+          Make images
           <br />
           <span className="font-normal italic text-white/75">
-            mean something.
+            that leave a feeling.
           </span>
         </motion.h1>
 
@@ -150,9 +150,9 @@ export default function Hero({ ready = true }: HeroProps) {
           variants={itemVariants}
           className="mt-9 max-w-[520px] text-[10px] leading-7 tracking-[0.15em] text-white/65 sm:text-[11px]"
         >
-          FILM <span className="mx-3 text-[#d4af37]">/</span>
-          PHOTOGRAPHY <span className="mx-3 text-[#d4af37]">/</span>
-          CREATIVE DIRECTION
+          FILM WITH FEELING <span className="mx-2 text-[#d4af37]">/</span>
+          PHOTOGRAPHS THAT LINGER <span className="mx-2 text-[#d4af37]">/</span>
+          DIRECTION WITH A POINT OF VIEW
         </motion.p>
 
         <motion.a
@@ -163,13 +163,13 @@ export default function Hero({ ready = true }: HeroProps) {
           <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/25 text-base">
             ↓
           </span>
-          Discover the studio
+          Step inside the studio
         </motion.a>
       </motion.div>
 
       <div className="absolute bottom-8 left-6 right-6 z-10 flex items-end justify-between text-[8px] uppercase tracking-[0.22em] text-white/55 sm:left-10 sm:right-10 lg:left-16 lg:right-16">
         <span>Ontario, Canada</span>
-        <span className="text-right">Images with intention.<br className="sm:hidden" /> Stories with presence.</span>
+        <span className="text-right">Less noise.<br className="sm:hidden" /> More feeling.</span>
       </div>
     </section>
   );
