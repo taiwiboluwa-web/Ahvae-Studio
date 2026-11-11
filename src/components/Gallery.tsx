@@ -58,23 +58,24 @@ const projects = [
 ];
 
 export default function Gallery() {
-  const [activeProject, setActiveProject] = useState<string | null>(null);
-  const selectedProject = projects.find((project) => project.id === activeProject) ?? null;
-  const selectedIndex = projects.findIndex((project) => project.id === activeProject);
+  const [hoverProject, setHoverProject] = useState<string | null>(null);
+  const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
+  const selectedProject = projects.find((project) => project.id === selectedProjectId) ?? null;
+  const selectedIndex = projects.findIndex((project) => project.id === selectedProjectId);
 
   useEffect(() => {
-    if (!activeProject) return;
+    if (!selectedProjectId) return;
 
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setActiveProject(null);
+      if (event.key === "Escape") setSelectedProjectId(null);
       if (event.key === "ArrowRight") {
-        setActiveProject(projects[(selectedIndex + 1) % projects.length].id);
+        setSelectedProjectId(projects[(selectedIndex + 1) % projects.length].id);
       }
       if (event.key === "ArrowLeft") {
-        setActiveProject(projects[(selectedIndex - 1 + projects.length) % projects.length].id);
+        setSelectedProjectId(projects[(selectedIndex - 1 + projects.length) % projects.length].id);
       }
     };
 
@@ -83,11 +84,11 @@ export default function Gallery() {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [activeProject, selectedIndex]);
+  }, [selectedProjectId, selectedIndex]);
 
   const moveProject = (direction: -1 | 1) => {
     const nextIndex = (selectedIndex + direction + projects.length) % projects.length;
-    setActiveProject(projects[nextIndex].id);
+    setSelectedProjectId(projects[nextIndex].id);
   };
 
   return (
@@ -110,27 +111,27 @@ export default function Gallery() {
 
       <div
         className="flex flex-col gap-3 sm:gap-4 md:flex-row lg:gap-5"
-        onMouseLeave={() => setActiveProject(null)}
+        onMouseLeave={() => setHoverProject(null)}
       >
         {projects.map((project) => {
-          const isActive = activeProject === project.id;
-          const isDimmed = activeProject !== null && !isActive;
+          const isActive = hoverProject === project.id;
+          const isDimmed = hoverProject !== null && !isActive;
 
           return (
             <motion.button
               key={project.id}
               type="button"
               data-cursor="view"
-              onMouseEnter={() => setActiveProject(project.id)}
-              onFocus={() => setActiveProject(project.id)}
+              onMouseEnter={() => setHoverProject(project.id)}
+              onFocus={() => setHoverProject(project.id)}
               onBlur={() =>
-                setActiveProject((current) =>
+                setHoverProject((current) =>
                   current === project.id ? null : current,
                 )
               }
-              onClick={() => setActiveProject(project.id)}
+              onClick={() => setSelectedProjectId(project.id)}
               aria-haspopup="dialog"
-              aria-expanded={isActive}
+              aria-expanded={selectedProjectId === project.id}
               initial={false}
               animate={{
                 flexGrow: isActive ? 2.8 : 1,
@@ -210,7 +211,7 @@ export default function Gallery() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35 }}
             onClick={(event) => {
-              if (event.target === event.currentTarget) setActiveProject(null);
+              if (event.target === event.currentTarget) setSelectedProjectId(null);
             }}
           >
             <motion.div
@@ -226,7 +227,7 @@ export default function Gallery() {
                 </span>
                 <button
                   type="button"
-                  onClick={() => setActiveProject(null)}
+                  onClick={() => setSelectedProjectId(null)}
                   className="inline-flex items-center gap-3 text-[8px] uppercase tracking-[0.2em] text-white/75 transition-colors hover:text-[#e2c773]"
                   aria-label="Close visual study"
                 >
